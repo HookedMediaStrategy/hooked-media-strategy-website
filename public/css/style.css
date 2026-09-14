@@ -73,14 +73,14 @@ img { max-width: 100%; display: block; }
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--orange-dark);
+  color: var(--orange);
   margin-bottom: 14px;
 }
 .eyebrow::before {
   content: "";
   width: 16px;
   height: 2px;
-  background: var(--orange-dark);
+  background: var(--orange);
   display: inline-block;
 }
 
