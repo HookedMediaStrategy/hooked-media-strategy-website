@@ -460,7 +460,7 @@ textarea { resize: vertical; min-height: 130px; }
 .contact-info-item { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 22px; }
 .contact-info-item .icon {
   width: 40px; height: 40px; border-radius: var(--radius-sm);
-  background: var(--panel); color: var(--brown-dark);
+  background: var(--white); color: var(--brown-dark);
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .contact-info-item .icon svg { width: 19px; height: 19px; }
