@@ -296,35 +296,21 @@ img { max-width: 100%; display: block; }
 .tile-orange { background: var(--orange); }
 .tile-green { background: var(--green); }
 .tile-brown { background: var(--brown); }
-.phone-chart {
-  display: flex;
-  align-items: flex-end;
-  gap: 8px;
-  height: 100px;
-  padding: 0 16px 10px;
-}
-.phone-chart .bar { flex: 1; border-radius: 6px 6px 2px 2px; }
-.phone-stat-line { padding: 0 16px 16px; }
-.phone-stat-line strong { display: block; font-family: "Archivo", sans-serif; font-weight: 800; color: var(--orange-dark); font-size: 1.05rem; }
-.phone-stat-line span { font-size: 0.68rem; color: var(--muted); }
-
-/* Hero visual composition: the phone mockup is the main visual, with the
-   feature card floating in front of it as a smaller accent. */
-.hero-visual {
+/* Hero collage: a bold, poster-style stack of overlapping color-block stat
+   cards and the feature card, instead of a literal device/app mockup. */
+.hero-collage {
   position: relative;
-  display: flex;
-  justify-content: center;
-  padding: 10px 0 50px;
+  width: min(420px, 100%);
+  height: 480px;
+  margin-left: auto;
 }
-.hero-visual .hero-phone { position: relative; z-index: 0; transform: rotate(4deg); }
-.hero-visual .hero-phone .phone-frame { width: 230px; }
-.hero-visual .hero-card {
+.hero-collage .hero-card {
   position: absolute;
-  z-index: 1;
-  left: -10px;
-  bottom: -20px;
-  width: 250px;
-  transform: rotate(-3deg);
+  top: 0;
+  right: 0;
+  z-index: 3;
+  width: 240px;
+  transform: rotate(-2deg);
 }
 .hero-card-tag {
   display: inline-block;
@@ -343,11 +329,61 @@ img { max-width: 100%; display: block; }
 .hero-card li { margin-bottom: 10px; }
 .hero-card li::marker { color: var(--orange-dark); }
 
+.collage-stat {
+  position: absolute;
+  width: 195px;
+  border-radius: 22px;
+  padding: 26px 24px;
+  color: white;
+  box-shadow: var(--shadow-lg);
+}
+.collage-stat strong {
+  display: block;
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  font-size: 2.1rem;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.collage-stat span { font-size: 0.82rem; line-height: 1.35; opacity: 0.92; display: block; }
+.collage-stat-a { background: var(--brown-dark); top: 30px; left: 0; z-index: 1; transform: rotate(-7deg); }
+.collage-stat-b { background: var(--green-dark); bottom: 0; left: 30px; z-index: 1; transform: rotate(6deg); }
+
+.collage-tag {
+  position: absolute;
+  bottom: 26px;
+  right: 4px;
+  z-index: 0;
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--orange);
+  border: 2px solid var(--orange);
+  border-radius: 999px;
+  padding: 6px 14px;
+  transform: rotate(6deg);
+}
+
 @media (max-width: 860px) {
   .hero .container { grid-template-columns: 1fr; }
-  .hero-visual { display: block; padding: 0; margin-top: 40px; }
-  .hero-visual .hero-phone { transform: none; margin: 0 auto; }
-  .hero-visual .hero-card { position: static; width: auto; transform: none; margin-top: -30px; margin-left: auto; margin-right: 10%; }
+  .hero-collage {
+    margin: 40px auto 0;
+    height: auto;
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .hero-collage .hero-card,
+  .hero-collage .collage-stat,
+  .hero-collage .collage-tag {
+    position: static;
+    width: 100%;
+    max-width: 280px;
+    transform: none;
+  }
 }
 
 /* Sections */
