@@ -218,7 +218,6 @@ img { max-width: 100%; display: block; }
 /* Hero */
 .hero {
   position: relative;
-  overflow: hidden;
   background: var(--panel-warm);
   padding: 86px 0 92px;
 }
@@ -297,6 +296,36 @@ img { max-width: 100%; display: block; }
 .tile-orange { background: var(--orange); }
 .tile-green { background: var(--green); }
 .tile-brown { background: var(--brown); }
+.phone-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 100px;
+  padding: 0 16px 10px;
+}
+.phone-chart .bar { flex: 1; border-radius: 6px 6px 2px 2px; }
+.phone-stat-line { padding: 0 16px 16px; }
+.phone-stat-line strong { display: block; font-family: "Archivo", sans-serif; font-weight: 800; color: var(--orange-dark); font-size: 1.05rem; }
+.phone-stat-line span { font-size: 0.68rem; color: var(--muted); }
+
+/* Hero visual composition: the phone mockup is the main visual, with the
+   feature card floating in front of it as a smaller accent. */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 50px;
+}
+.hero-visual .hero-phone { position: relative; z-index: 0; transform: rotate(4deg); }
+.hero-visual .hero-phone .phone-frame { width: 230px; }
+.hero-visual .hero-card {
+  position: absolute;
+  z-index: 1;
+  left: -10px;
+  bottom: -20px;
+  width: 250px;
+  transform: rotate(-3deg);
+}
 .hero-card-tag {
   display: inline-block;
   font-family: "Archivo", sans-serif;
@@ -316,6 +345,9 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 860px) {
   .hero .container { grid-template-columns: 1fr; }
+  .hero-visual { display: block; padding: 0; margin-top: 40px; }
+  .hero-visual .hero-phone { transform: none; margin: 0 auto; }
+  .hero-visual .hero-card { position: static; width: auto; transform: none; margin-top: -30px; margin-left: auto; margin-right: 10%; }
 }
 
 /* Sections */
