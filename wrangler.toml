@@ -1,3 +1,6 @@
 name = "hooked-media-strategy"
 compatibility_date = "2024-09-14"
-pages_build_output_dir = "."
+
+[assets]
+directory = "public"
+not_found_handling = "404-page"

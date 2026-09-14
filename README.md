@@ -1,35 +1,39 @@
 # Hooked Media Strategy — Website
 
-The public marketing site for Hooked Media Strategy (HMS), a student-run digital marketing agency at UT Austin. This is a **plain HTML/CSS/JS site — no build step, no framework** — so any future member can open a file and edit it directly, no coding bootcamp required.
+The public marketing site for Hooked Media Strategy (HMS), a student-run digital marketing agency at UT Austin. This is a **plain HTML/CSS/JS site — no build step, no framework** — so any future member can open a file and edit it directly, no coding bootcamp required. It's deployed on **Cloudflare Workers** (static assets), which leaves room to add animations, interactivity, or edge logic (e.g. handling the contact form) later without switching platforms.
 
-Live site: _add the deployed Cloudflare Pages URL here once live_
+Live site: https://hooked-media-strategy.hooked-media-strategy.workers.dev
+_(swap in a custom domain here once one is connected)_
 
 ## Project structure
 
 ```
-├── index.html          Home
-├── about.html           Our Mission
-├── team.html            Our Team
-├── services.html        Our Services
-├── structure.html       Our Structure
-├── work.html             Our Work / portfolio
-├── contact.html          Contact form + info
-├── join.html              Recruitment / FAQs
-├── privacy.html           Privacy Policy
-├── accessibility.html    Accessibility Statement
-├── 404.html                Not-found page
-├── css/style.css          All site styling (colors, spacing, layout)
-├── js/main.js              Mobile nav toggle, active-link highlight, contact form behavior
-└── favicon.svg
+├── public/                    Everything that gets deployed
+│   ├── index.html               Home
+│   ├── about.html                Our Mission
+│   ├── team.html                 Our Team
+│   ├── services.html             Our Services
+│   ├── structure.html            Our Structure
+│   ├── work.html                  Our Work / portfolio
+│   ├── contact.html               Contact form + info
+│   ├── join.html                   Recruitment / FAQs
+│   ├── privacy.html                Privacy Policy
+│   ├── accessibility.html         Accessibility Statement
+│   ├── 404.html                     Not-found page
+│   ├── css/style.css               All site styling (colors, spacing, layout)
+│   ├── js/main.js                   Mobile nav toggle, active-link highlight, contact form behavior
+│   └── favicon.svg
+├── wrangler.toml               Cloudflare Workers config (points at public/)
+└── .github/workflows/deploy.yml   Auto-deploy on push to main
 ```
 
-Every page repeats the same `<header>` nav and `<footer>` blocks. If you add/rename a nav link, update it in **all HTML files** (a find-and-replace across `*.html` works well here).
+Everything in `public/` is what ends up live — nothing outside it gets deployed. Every page repeats the same `<header>` nav and `<footer>` blocks. If you add/rename a nav link, update it in **all HTML files** (a find-and-replace across `public/*.html` works well here).
 
 ## Editing content
 
-Open any `.html` file in a text editor (VS Code recommended) and edit the text directly — headings are `<h1>`/`<h2>`/`<h3>`, paragraphs are `<p>`. To change colors, fonts, or spacing site-wide, edit the CSS variables at the top of [`css/style.css`](css/style.css) (e.g. `--coral`, `--navy-900`).
+Open any `.html` file in `public/` in a text editor (VS Code recommended) and edit the text directly — headings are `<h1>`/`<h2>`/`<h3>`, paragraphs are `<p>`. To change colors, fonts, or spacing site-wide, edit the CSS variables at the top of [`public/css/style.css`](public/css/style.css) (e.g. `--coral`, `--navy-900`). To add animations or new interactivity, extend [`public/js/main.js`](public/js/main.js) or add a new script tag — it's plain client-side JavaScript, no build step required.
 
-To add a new page, copy an existing page (e.g. `services.html`), change its content, and add a link to it in the nav (`<ul class="nav-links">`) and footer on every page.
+To add a new page, copy an existing page (e.g. `public/services.html`), change its content, and add a link to it in the nav (`<ul class="nav-links">`) and footer on every page.
 
 ## Running it locally
 
@@ -40,15 +44,15 @@ npm install
 npm run dev
 ```
 
-This starts a local preview (via Wrangler) — open the printed `localhost` URL in your browser. You can also just double-click `index.html` to preview it without a server, though the mobile menu and a couple of relative-path behaviors work best through `npm run dev`.
+This starts a local preview (via Wrangler) — open the printed `localhost` URL in your browser. You can also just double-click `public/index.html` to preview it without a server, though the mobile menu and a couple of relative-path behaviors work best through `npm run dev`.
 
 ## Deploying to Cloudflare
 
-The site deploys to **Cloudflare Pages** under the HookedMediaStrategy Cloudflare account.
+The site deploys as a **Cloudflare Worker** (static assets) under the HookedMediaStrategy Cloudflare account.
 
 **Automatic (recommended):** Every push to `main` on GitHub automatically deploys via the GitHub Action in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). This requires two repo secrets to be set once, under Settings → Secrets and variables → Actions:
 
-- `CLOUDFLARE_API_TOKEN` — a Cloudflare API token with "Cloudflare Pages: Edit" permission on the HookedMediaStrategy account
+- `CLOUDFLARE_API_TOKEN` — a Cloudflare API token created from the "Edit Cloudflare Workers" template, scoped to the HookedMediaStrategy account
 - `CLOUDFLARE_ACCOUNT_ID` — the HookedMediaStrategy account ID (visible on the right side of any page in the Cloudflare dashboard)
 
 **Manual deploy** (if you have Wrangler set up locally and are logged into the HookedMediaStrategy Cloudflare account):
@@ -59,11 +63,13 @@ npm run deploy
 
 ## Wiring up the contact form
 
-The contact form on `contact.html` currently just shows a "thanks, but email us directly" message — it isn't connected to an inbox yet, since this is a static site with no backend. The easiest fix for a future member:
+The contact form on `contact.html` currently just shows a "thanks, but email us directly" message — it isn't connected to an inbox yet. The easiest fix for a future member:
 
 1. Sign up for a free [Formspree](https://formspree.io/) account (or similar) using the HMS Gmail.
 2. Set the form's `action` attribute in `contact.html` to your Formspree endpoint and add `method="POST"`.
 3. Add `data-wired="true"` to the `<form id="contact-form">` tag so `js/main.js` stops intercepting the submit.
+
+(Alternatively, since this now runs on Workers, a future member could add a small `fetch` handler directly in the Worker to receive the form submission server-side — ask in the officer chat if you want help setting that up.)
 
 ## Questions
 
