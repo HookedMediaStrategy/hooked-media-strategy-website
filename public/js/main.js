@@ -33,6 +33,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Scroll-reveal: fade + rise elements into view as the visitor scrolls.
+  // Pure progressive enhancement — if JS fails, everything is already visible (no .reveal class applied).
+  const revealTargets = document.querySelectorAll(
+    ".card, .hero-card, .cta-banner, .section-head, .work-item, .partners-strip"
+  );
+  if (revealTargets.length && "IntersectionObserver" in window) {
+    revealTargets.forEach((el, i) => {
+      el.classList.add("reveal");
+      el.style.transitionDelay = `${(i % 4) * 70}ms`;
+    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    );
+    revealTargets.forEach((el) => observer.observe(el));
+  }
+
   // Contact form: friendly confirmation without a backend.
   // See README.md "Wiring up the contact form" to connect this to a real inbox (Formspree, etc).
   const form = document.querySelector("#contact-form");
