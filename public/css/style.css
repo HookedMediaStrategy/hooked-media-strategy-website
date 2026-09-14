@@ -141,8 +141,8 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
   object-fit: contain;
 }
-.brand-word-lead { color: var(--brown-dark); }
-.brand-word-tail { color: var(--orange-dark); }
+.brand-word-lead { color: var(--green); }
+.brand-word-tail { color: var(--orange); }
 
 /* Header / Nav */
 .site-header {
@@ -495,7 +495,6 @@ details.faq p { margin-top: 12px; color: var(--muted); }
 .footer-grid li { margin-bottom: 10px; }
 .footer-grid a:hover { color: white; }
 .footer-brand { color: white; font-family: "Archivo", sans-serif; font-weight: 700; font-size: 1.12rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-.footer-brand .brand-word-lead { color: white; }
 .footer-bottom {
   display: flex;
   justify-content: space-between;
