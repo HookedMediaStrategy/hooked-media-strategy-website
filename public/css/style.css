@@ -236,6 +236,17 @@ img { max-width: 100%; display: block; }
   padding: 30px;
   box-shadow: var(--shadow-lg);
 }
+.mission-photo {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 4 / 3;
+}
+.mission-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .hero-card-tag {
   display: inline-block;
   font-family: "Archivo", sans-serif;
@@ -302,12 +313,8 @@ img { max-width: 100%; display: block; }
   margin-bottom: 18px;
 }
 .card .icon svg { width: 22px; height: 22px; }
-.grid-3 .card:nth-child(3n+2) .icon,
-.grid-2 .card:nth-child(4n+2) .icon,
-.value-card:nth-child(3n+2) .icon { background: var(--green-dark); }
-.grid-3 .card:nth-child(3n+3) .icon,
-.grid-2 .card:nth-child(4n+3) .icon,
-.value-card:nth-child(3n+3) .icon { background: var(--brown); }
+.icon-green { background: var(--green-dark) !important; }
+.icon-brown { background: var(--brown) !important; }
 
 .value-card { text-align: center; padding: 34px 24px; }
 .value-card .icon { margin-left: auto; margin-right: auto; }
@@ -340,7 +347,7 @@ img { max-width: 100%; display: block; }
 }
 .work-item:last-child { border-bottom: none; }
 .work-time { color: var(--muted); font-family: "Archivo", sans-serif; font-size: 0.85rem; font-weight: 600; }
-.work-logo { height: 26px; width: auto; max-width: 140px; object-fit: contain; margin-bottom: 14px; }
+.work-logo { height: 36px; width: auto; max-width: 170px; object-fit: contain; margin-bottom: 14px; }
 .result-stats {
   display: flex;
   flex-wrap: wrap;
@@ -488,6 +495,7 @@ details.faq p { margin-top: 12px; color: var(--muted); }
 .footer-grid li { margin-bottom: 10px; }
 .footer-grid a:hover { color: white; }
 .footer-brand { color: white; font-family: "Archivo", sans-serif; font-weight: 700; font-size: 1.12rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.footer-brand .brand-word-lead { color: white; }
 .footer-bottom {
   display: flex;
   justify-content: space-between;
