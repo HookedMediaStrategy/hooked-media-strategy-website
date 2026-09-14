@@ -1,0 +1,13 @@
+{
+  "name": "hooked-media-strategy",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Hooked Media Strategy marketing site — static HTML/CSS/JS deployed to Cloudflare Pages.",
+  "scripts": {
+    "dev": "wrangler pages dev . --port 8788",
+    "deploy": "wrangler pages deploy . --project-name=hooked-media-strategy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.131.0"
+  }
+}
