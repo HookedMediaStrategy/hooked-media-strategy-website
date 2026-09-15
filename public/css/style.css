@@ -221,7 +221,7 @@ img { max-width: 100%; display: block; }
   background: var(--panel-warm);
   padding: 86px 0 92px;
 }
-.hero .container { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items: center; }
+.hero .container { display: grid; grid-template-columns: 1fr 1.05fr; gap: 50px; align-items: center; }
 .hero-actions { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
 .hero-stats { display: flex; gap: 34px; margin-top: 44px; flex-wrap: wrap; }
 .hero-stats div strong { display: block; font-family: "Archivo", sans-serif; font-size: 1.7rem; font-weight: 800; color: var(--orange-dark); }
@@ -300,8 +300,8 @@ img { max-width: 100%; display: block; }
    with a single stat card as a light accent — kept deliberately spare. */
 .hero-collage {
   position: relative;
-  width: min(420px, 100%);
-  height: 480px;
+  width: min(520px, 100%);
+  aspect-ratio: 5 / 6;
   margin-left: auto;
 }
 .hero-phone-art {
@@ -311,12 +311,11 @@ img { max-width: 100%; display: block; }
   height: 100%;
   z-index: 0;
   border-radius: 28px;
-  box-shadow: var(--shadow-lg);
 }
 
 .collage-stat {
   position: absolute;
-  width: 195px;
+  width: 205px;
   border-radius: 22px;
   padding: 26px 24px;
   color: white;
@@ -338,14 +337,15 @@ img { max-width: 100%; display: block; }
   .hero .container { grid-template-columns: 1fr; }
   .hero-collage {
     margin: 40px auto 0;
-    height: auto;
+    width: 100%;
     max-width: 340px;
+    aspect-ratio: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 24px;
   }
-  .hero-phone-art { position: static; width: 100%; height: auto; aspect-ratio: 400 / 480; }
+  .hero-phone-art { position: static; width: 100%; height: auto; aspect-ratio: 5 / 6; }
   .hero-collage .collage-stat {
     position: static;
     width: 100%;
