@@ -296,15 +296,15 @@ img { max-width: 100%; display: block; }
 .tile-orange { background: var(--orange); }
 .tile-green { background: var(--green); }
 .tile-brown { background: var(--brown); }
-/* Hero collage: a bold, poster-style stack of overlapping color-block stat
-   cards and the feature card, instead of a literal device/app mockup. */
+/* Hero visual: the phone-hanging illustration from the original site,
+   with a single stat card as a light accent — kept deliberately spare. */
 .hero-collage {
   position: relative;
   width: min(420px, 100%);
   height: 480px;
   margin-left: auto;
 }
-.hero-phone-bg {
+.hero-phone-art {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -313,30 +313,6 @@ img { max-width: 100%; display: block; }
   border-radius: 28px;
   box-shadow: var(--shadow-lg);
 }
-.hero-collage .hero-card {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 3;
-  width: 240px;
-  transform: rotate(-2deg);
-}
-.hero-card-tag {
-  display: inline-block;
-  font-family: "Archivo", sans-serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background: var(--brown-dark);
-  color: white;
-  padding: 6px 13px;
-  border-radius: 4px;
-  margin-bottom: 18px;
-}
-.hero-card ul { margin: 0; padding-left: 20px; color: var(--ink); }
-.hero-card li { margin-bottom: 10px; }
-.hero-card li::marker { color: var(--orange-dark); }
 
 .collage-stat {
   position: absolute;
@@ -345,6 +321,7 @@ img { max-width: 100%; display: block; }
   padding: 26px 24px;
   color: white;
   box-shadow: var(--shadow-lg);
+  z-index: 1;
 }
 .collage-stat strong {
   display: block;
@@ -355,24 +332,7 @@ img { max-width: 100%; display: block; }
   margin-bottom: 10px;
 }
 .collage-stat span { font-size: 0.82rem; line-height: 1.35; opacity: 0.92; display: block; }
-.collage-stat-a { background: var(--brown-dark); top: 30px; left: 0; z-index: 1; transform: rotate(-7deg); }
-.collage-stat-b { background: var(--green-dark); bottom: 0; left: 30px; z-index: 1; transform: rotate(6deg); }
-
-.collage-tag {
-  position: absolute;
-  bottom: 26px;
-  right: 4px;
-  z-index: 0;
-  font-family: "Archivo", sans-serif;
-  font-weight: 800;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  color: var(--orange);
-  border: 2px solid var(--orange);
-  border-radius: 999px;
-  padding: 6px 14px;
-  transform: rotate(6deg);
-}
+.collage-stat-a { background: var(--brown-dark); top: 28px; right: -16px; transform: rotate(4deg); }
 
 @media (max-width: 860px) {
   .hero .container { grid-template-columns: 1fr; }
@@ -385,15 +345,13 @@ img { max-width: 100%; display: block; }
     align-items: center;
     gap: 24px;
   }
-  .hero-collage .hero-card,
-  .hero-collage .collage-stat,
-  .hero-collage .collage-tag {
+  .hero-phone-art { position: static; width: 100%; height: auto; aspect-ratio: 400 / 480; }
+  .hero-collage .collage-stat {
     position: static;
     width: 100%;
     max-width: 280px;
     transform: none;
   }
-  .hero-phone-bg { display: none; }
 }
 
 /* Sections */
