@@ -354,6 +354,58 @@ img { max-width: 100%; display: block; }
   }
 }
 
+/* Hero load-in animation: a brief, one-time entrance on page load. Skipped
+   entirely for users who prefer reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero .eyebrow,
+  .hero h1,
+  .hero .lede,
+  .hero .hero-actions,
+  .hero .hero-stats {
+    opacity: 0;
+    animation: heroFadeUp 0.7s ease forwards;
+  }
+  .hero .eyebrow { animation-delay: 0.05s; }
+  .hero h1 { animation-delay: 0.15s; }
+  .hero .lede { animation-delay: 0.3s; }
+  .hero .hero-actions { animation-delay: 0.42s; }
+  .hero .hero-stats { animation-delay: 0.54s; }
+
+  .hero-collage { opacity: 0; animation: heroFadeIn 0.6s ease 0.2s forwards; }
+
+  .hero-phone-art line {
+    stroke-dasharray: 255;
+    stroke-dashoffset: 255;
+    animation: heroWireDrop 0.5s ease 0.35s forwards;
+  }
+  .hero-phone-art g {
+    animation: heroPhoneDrop 0.6s ease 0.75s backwards;
+  }
+  .collage-stat-a {
+    animation: heroStatPop 0.5s ease 1.25s backwards;
+  }
+}
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes heroWireDrop {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes heroPhoneDrop {
+  from { transform: translate(142px, 209px) rotate(9deg); opacity: 0; }
+  to { transform: translate(142px, 249px) rotate(9deg); opacity: 1; }
+}
+@keyframes heroStatPop {
+  from { transform: rotate(4deg) translateY(-10px) scale(0.92); opacity: 0; }
+  to { transform: rotate(4deg) translateY(0) scale(1); opacity: 1; }
+}
+
 /* Sections */
 .section { padding: 84px 0; position: relative; }
 .section-tight { padding: 56px 0; }
