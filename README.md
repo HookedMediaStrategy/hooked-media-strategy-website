@@ -61,15 +61,11 @@ The site deploys as a **Cloudflare Worker** (static assets) under the HookedMedi
 npm run deploy
 ```
 
-## Wiring up the contact form
+## Contact form
 
-The contact form on `contact.html` currently just shows a "thanks, but email us directly" message — it isn't connected to an inbox yet. The easiest fix for a future member:
+The contact form on `contact.html` is wired up via [Formspree](https://formspree.io/) (free tier, 50 submissions/month). Submissions are emailed to `hookedmediastrategy@gmail.com` — log in to formspree.io with that same Gmail account to view past submissions, check usage, or manage the form.
 
-1. Sign up for a free [Formspree](https://formspree.io/) account (or similar) using the HMS Gmail.
-2. Set the form's `action` attribute in `contact.html` to your Formspree endpoint and add `method="POST"`.
-3. Add `data-wired="true"` to the `<form id="contact-form">` tag so `js/main.js` stops intercepting the submit.
-
-(Alternatively, since this now runs on Workers, a future member could add a small `fetch` handler directly in the Worker to receive the form submission server-side — ask in the officer chat if you want help setting that up.)
+The form's `action` attribute points at the Formspree endpoint (`https://formspree.io/f/xrpbgpkj`), and `js/main.js` submits it via `fetch` so visitors get an inline "thanks" message instead of leaving the page. If the free tier's submission limit is ever hit, either upgrade the Formspree plan or swap in a different endpoint (update `action` in `contact.html`).
 
 ## Questions
 

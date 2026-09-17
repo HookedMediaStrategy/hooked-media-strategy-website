@@ -57,19 +57,35 @@ document.addEventListener("DOMContentLoaded", () => {
     revealTargets.forEach((el) => observer.observe(el));
   }
 
-  // Contact form: friendly confirmation without a backend.
-  // See README.md "Wiring up the contact form" to connect this to a real inbox (Formspree, etc).
+  // Contact form: submits to Formspree via fetch so the visitor stays on the page.
+  // Falls back to a normal form POST (form's action/method attributes) if JS fails.
   const form = document.querySelector("#contact-form");
   if (form) {
-    form.addEventListener("submit", (e) => {
-      if (form.dataset.wired === "true") return; // let a real endpoint handle it
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const status = document.querySelector("#form-status");
-      if (status) {
-        status.textContent = "Thanks for reaching out! This form isn't connected to an inbox yet — email hookedmediastrategy@gmail.com directly, or see README.md to wire this form up.";
-        status.classList.add("visible");
+      const submitBtn = form.querySelector("button[type=submit]");
+      if (submitBtn) submitBtn.disabled = true;
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+        });
+        if (!response.ok) throw new Error("Form submission failed");
+        if (status) {
+          status.textContent = "Thanks for reaching out! We'll get back to you soon.";
+          status.classList.add("visible");
+        }
+        form.reset();
+      } catch (err) {
+        if (status) {
+          status.textContent = "Something went wrong sending your message — please email hookedmediastrategy@gmail.com directly.";
+          status.classList.add("visible");
+        }
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
       }
-      form.reset();
     });
   }
 });
