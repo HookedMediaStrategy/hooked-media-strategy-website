@@ -109,9 +109,8 @@ img { max-width: 100%; display: block; }
 .btn-primary {
   background: var(--orange);
   color: var(--white);
-  box-shadow: 0 6px 16px rgba(236, 141, 20, 0.32);
 }
-.btn-primary:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 10px 22px rgba(236, 141, 20, 0.38); }
+.btn-primary:hover { background: var(--orange-dark); transform: translateY(-2px); }
 .btn-outline {
   background: transparent;
   border-color: var(--brown);
