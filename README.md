@@ -2,8 +2,7 @@
 
 The public marketing site for Hooked Media Strategy (HMS), a student-run digital marketing agency at UT Austin. This is a **plain HTML/CSS/JS site — no build step, no framework** — so any future member can open a file and edit it directly, no coding bootcamp required. It's deployed on **Cloudflare Workers** (static assets), which leaves room to add animations, interactivity, or edge logic (e.g. handling the contact form) later without switching platforms.
 
-Live site: https://hooked-media-strategy.hooked-media-strategy.workers.dev
-_(swap in a custom domain here once one is connected)_
+Live site: https://hookedmediastrategy.org (also reachable at https://hooked-media-strategy.hooked-media-strategy.workers.dev)
 
 ## Project structure
 
@@ -60,6 +59,12 @@ The site deploys as a **Cloudflare Worker** (static assets) under the HookedMedi
 ```bash
 npm run deploy
 ```
+
+## Custom domain
+
+`hookedmediastrategy.org` is registered on Namecheap with nameservers pointed at Cloudflare. Both the bare domain and `www.hookedmediastrategy.org` are connected as Custom Domains on the Worker (see `[[routes]]` in `wrangler.toml`) so either works; every page sets `<link rel="canonical">` to the bare `hookedmediastrategy.org` URL so search engines treat that as the authoritative version.
+
+If Google search results ever point at a dead/old URL again (e.g. after another domain change), verify the domain in [Google Search Console](https://search.google.com/search-console), submit `sitemap.xml`, and use the URL Inspection tool's "Request Indexing" on the affected pages to speed up re-crawling.
 
 ## Contact form
 
