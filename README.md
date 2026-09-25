@@ -62,9 +62,15 @@ npm run deploy
 
 ## Custom domain
 
-`hookedmediastrategy.org` is registered on Namecheap with nameservers pointed at Cloudflare. Both the bare domain and `www.hookedmediastrategy.org` are connected as Custom Domains on the Worker (see `[[routes]]` in `wrangler.toml`) so either works; every page sets `<link rel="canonical">` to the bare `hookedmediastrategy.org` URL so search engines treat that as the authoritative version.
+`hookedmediastrategy.org` is registered on Namecheap with nameservers pointed at Cloudflare. Both the bare domain and `www.hookedmediastrategy.org` are connected as Custom Domains on the Worker — set up manually in the Cloudflare dashboard under Workers & Pages → `hooked-media-strategy` → Settings → Domains & Routes (not in `wrangler.toml`) — so either works; every page sets `<link rel="canonical">` to the bare `hookedmediastrategy.org` URL so search engines treat that as the authoritative version.
 
 If Google search results ever point at a dead/old URL again (e.g. after another domain change), verify the domain in [Google Search Console](https://search.google.com/search-console), submit `sitemap.xml`, and use the URL Inspection tool's "Request Indexing" on the affected pages to speed up re-crawling.
+
+## Viewing site analytics
+
+Traffic (page views, visits, top pages, referrers, countries, devices) is tracked via **Cloudflare Web Analytics** — free, privacy-first, and already enabled for `hookedmediastrategy.org` with zero code on the site (Cloudflare injects it automatically at the edge since the domain's DNS is on Cloudflare).
+
+To view it: log into the Cloudflare dashboard (HookedMediaStrategy account) → search "Web Analytics" or find it under **Analytics & Logs** → **Web Analytics** → click `hookedmediastrategy.org` in the site list. No setup is required; it just works as long as the domain stays on Cloudflare DNS.
 
 ## Contact form
 
